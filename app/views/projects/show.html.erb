@@ -1,1 +1,9 @@
 <h1>Project Show Page</h1>
+
+<h2><%= @project.name %></h2>
+<h2><%= @project.address %></h2>
+<h2><%= @project.company %></h2>
+
+<%= link_to "Back", projects_path %> |
+<%= link_to "Edit", edit_project_path(@project) %> |
+<%= link_to "Delete", project_path(@project), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
