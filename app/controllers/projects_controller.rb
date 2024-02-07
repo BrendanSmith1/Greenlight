@@ -1,11 +1,12 @@
 class ProjectsController < ApplicationController
-  before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
     @projects = Project.all
   end
 
   def show
+    @drawings = Drawing.all
   end
 
   def new
@@ -37,7 +38,7 @@ class ProjectsController < ApplicationController
     params.require(:project).permit(:name, :address, :company)
   end
 
-  def set_restaurant
+  def set_project
     @project = Project.find(params[:id])
   end
 end
