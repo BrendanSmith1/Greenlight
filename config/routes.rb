@@ -8,6 +8,6 @@ Rails.application.routes.draw do
 
   #index, create, new, edit, show, update, destroy
 
-  root to: "home#index"
+  root to: "pages#home"
   resources :projects, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 end

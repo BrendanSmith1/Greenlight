@@ -4,7 +4,7 @@ Drawing.destroy_all
 Project.destroy_all
 
 for i in 1..10
-  Project.create!(name: "Project #{i}", address: "Address #{i}", company: "Company #{i}")
+  Project.create!(name: "Project #{i}", address: "Address #{i}", company: "Company #{i}", user: User.all.sample )
 end
 
 puts "Projects created..."

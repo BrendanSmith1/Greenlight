@@ -3,6 +3,7 @@
 <h2><%= @project.name %></h2>
 <h2><%= @project.address %></h2>
 <h2><%= @project.company %></h2>
+<h2><%= @project.user.email %></h2>
 
 <ol>
   <% @project.drawings.each do |drawing| %>
@@ -10,6 +11,10 @@
   <% end %>
 </ol>
 
-<%= link_to "Back", projects_path %> |
-<%= link_to "Edit", edit_project_path(@project) %> |
-<%= link_to "Delete", project_path(@project), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+<%= link_to "Back", projects_path %>
+<% if policy(@project).edit? %>
+   | <%= link_to "Edit", edit_project_path(@project) %> |
+<% end %>
+<% if policy(@project).destroy? %>
+  <%= link_to "Delete", project_path(@project), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+<% end %>
