@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
+  #This lets you add custom fields to the Devise sign up form
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
