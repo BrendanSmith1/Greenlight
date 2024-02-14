@@ -21,6 +21,26 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, autocomplete: "First Name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name, autocomplete: "Last Name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :job_title %><br />
+    <%= f.text_field :job_title, autocomplete: "Job Title" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :company %><br />
+    <%= f.text_field :company, autocomplete: "Company" %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
