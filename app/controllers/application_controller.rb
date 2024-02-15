@@ -4,8 +4,8 @@ class ApplicationController < ActionController::Base
   # This is for pundit gem
   include Pundit::Authorization
 
-  # The below is for pundit gem - tells you if you have forgotten to authorize a controller action or not scoped index page
-  after_action :verify_authorized, except: :index, unless: :skip_pundit?
+  # Use below to test authorisation (pundit) - tells you if you have forgotten to authorize a controller action or not scoped index page
+  # after_action :verify_authorized, except: :index, unless: :skip_pundit?
   # after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
 
     # Uncomment when you *really understand* Pundit!
