@@ -11,14 +11,14 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def create?
-    true
+    user.admin?
   end
 
   def update?
-    record.user == user
+    user.admin?
   end
 
   def destroy?
-    record.user == user
+    user.admin?
   end
 end
