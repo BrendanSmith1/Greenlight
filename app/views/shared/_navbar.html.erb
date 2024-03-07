@@ -1,0 +1,17 @@
+<ul class="navbar">
+  <%# Will want to add active dyanmically to the page that is active (Stimulus) %>
+  <li class="left"><a href="/" class="active">Home</a></li>
+  <li class="right dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Dropdown</a>
+    <div class="dropdown-content">
+      <% if user_signed_in? %>
+        <%= link_to "Edit your details", edit_user_registration_path %>
+        <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete } %>
+      <% else %>
+        <%= link_to "Login", new_user_session_path %>
+        <%= link_to "Sign up", new_user_registration_path %>
+      <% end %>
+    </div>
+  </li>
+  <li class="right"><a href="contact.asp"><%= current_user.email %></a></li>
+</ul>
