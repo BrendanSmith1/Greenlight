@@ -13,5 +13,9 @@
       <% end %>
     </div>
   </li>
-  <li class="right"><a href="contact.asp"><%= current_user.email %></a></li>
+  <% if user_signed_in? %>
+    <li class="right"><a href="#"><%= current_user.email %></a></li>
+  <% else %>
+    <li class="right"><a href="#">Not Signed In</a></li>
+  <% end %>
 </ul>

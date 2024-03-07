@@ -1,10 +1,20 @@
 <h1>Project Index View</h1>
 
-<ul>
-  <% @projects.each do |project| %>
-    <li><%= link_to project.name, project_path(project) %></li>
-  <% end %>
-</ul>
+<h3>Frequently Visited</h3>
 
+<h3>All Your Projects</h3>
+<% @projects.each do |project| %>
+  <div class="responsive">
+    <div class="gallery">
+      <%= link_to project_path(project) do %>
+        <%# Project Name should be dynamic %>
+        <img src="avatar.jpg" alt="Project Name">
+        <div class="desc"><%= project.name %></div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<div class="clearfix"></div>
 
 <%= link_to "New Project", new_project_path if policy(Project).new?%>
