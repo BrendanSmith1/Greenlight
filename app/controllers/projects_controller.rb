@@ -3,6 +3,10 @@ class ProjectsController < ApplicationController
 
   def index
     # @projects = Project.all
+    # If I do below, policy scope is not applied to projects, so admin cannot see all
+    # @projects = current_user.projects
+
+    # If I do below, policy scope is applied to projects, so admin can see all, but user can't see what they're registered to
     @projects = policy_scope(Project)
   end
 
