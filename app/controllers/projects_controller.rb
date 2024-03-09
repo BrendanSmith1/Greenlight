@@ -42,8 +42,9 @@ class ProjectsController < ApplicationController
 
   private
 
+  # user_ids: [] is an array of user ids used to associate users with a project
   def project_params
-    params.require(:project).permit(:name, :address, :company)
+    params.require(:project).permit(:name, :address, :company, user_ids: [])
   end
 
   def set_project

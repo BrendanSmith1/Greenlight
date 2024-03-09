@@ -5,5 +5,6 @@
   <%= f.text_field :address %>
   <%= f.label :company %>
   <%= f.text_field :company %>
+  <%= collection_check_boxes(:project, :user_ids, User.all, :id, :email) %>
   <%= f.submit %>
 <% end %>

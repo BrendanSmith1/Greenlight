@@ -19,4 +19,11 @@
   <%= link_to "Delete", project_path(@project), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
 <% end %>
 
-<%# <%= link_to "Add a user to this project",  %> %>
+<% if @project.users.any? %>
+  <h3>Registered Users</h3>
+  <% @project.users.each do |user| %>
+    <p><%= user.email %></p>
+  <% end %>
+<% end %>
+
+<%# <%= link_to "Add a user to this project",  %> 
