@@ -1,6 +1,7 @@
 div.gallery {
   border: 1px solid #ccc;
   margin-bottom: 16px;
+  text-align: center;
 }
 
 div.gallery:hover {
@@ -8,13 +9,13 @@ div.gallery:hover {
 }
 
 div.gallery img {
-  width: 100%;
+  width: 40px;
   height: auto;
+  padding-top: 16px;
 }
 
 div.desc {
   padding: 16px;
-  text-align: center;
 }
 
 * {

@@ -1,17 +1,32 @@
 <h1>Project Show Page</h1>
 
-<h2><%= @project.name %></h2>
-<h2><%= @project.address %></h2>
-<h2><%= @project.company %></h2>
-<h2><%= @project.user.email %></h2>
+<h2><%= @project.name %>, <%= @project.address %>, <%= @project.company %></h2>
 
-<ol>
-  <% @project.drawings.each do |drawing| %>
-    <li><%= drawing.name %>, <%= drawing.number %>, <%= drawing.revision %></li>
-  <% end %>
-</ol>
+<div class="container">
+  <table>
+    <tr>
+        <th>Select</th>
+        <th>Name</th>
+        <th>Drawing No</th>
+        <th>Revision</th>
+        <th>Last Updated</th>
+        <th>Updated By</th>
+    </tr>
+    <% @project.drawings.each do |drawing| %>
+      <tr>
+        <td>Box</td>
+        <td><%= drawing.name %></td>
+        <td><%= drawing.number %></td>
+        <td><%= drawing.revision %></td>
+        <td>Date</td>
+        <td>Author</td>
+      </tr>
+    <% end %>
+  </table>
+</div>
 
 <%= link_to "Back", projects_path %>
+
 <% if policy(@project).edit? %>
    | <%= link_to "Edit", edit_project_path(@project) %> |
 <% end %>
@@ -26,4 +41,4 @@
   <% end %>
 <% end %>
 
-<%# <%= link_to "Add a user to this project",  %> 
+<%# <%= link_to "Add a user to this project",  %>

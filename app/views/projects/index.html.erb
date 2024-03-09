@@ -5,13 +5,13 @@
 <h3>All Your Projects</h3>
 <% @projects.each do |project| %>
   <div class="responsive">
-    <div class="gallery">
-      <%= link_to project_path(project) do %>
+    <%= link_to project_path(project) do %>
+      <div class="gallery">
         <%# Project Name should be dynamic %>
-        <img src="avatar.jpg" alt="Project Name">
+        <%= image_tag("avatar.jpg") %>
         <div class="desc"><%= truncate(project.name, length:50) %></div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
 <% end %>
 
