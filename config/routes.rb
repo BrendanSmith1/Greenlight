@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   #index, create, new, edit, show, update, destroy
 
+  # Devise scope for authenticated and unauthenticated users?
   root to: "pages#home"
   resources :projects, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 end

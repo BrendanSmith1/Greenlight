@@ -9,7 +9,7 @@
       <%= link_to project_path(project) do %>
         <%# Project Name should be dynamic %>
         <img src="avatar.jpg" alt="Project Name">
-        <div class="desc"><%= project.name %></div>
+        <div class="desc"><%= truncate(project.name, length:50) %></div>
       <% end %>
     </div>
   </div>

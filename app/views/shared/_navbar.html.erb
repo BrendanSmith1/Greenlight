@@ -1,6 +1,6 @@
 <ul class="navbar">
   <%# Will want to add active dyanmically to the page that is active (Stimulus) %>
-  <li class="left"><a href="/" class="active">Home</a></li>
+  <li class="left"><%= link_to "Projects", projects_path, class: "active" %></li>
   <li class="right dropdown">
     <a href="javascript:void(0)" class="dropbtn">Dropdown</a>
     <div class="dropdown-content">
