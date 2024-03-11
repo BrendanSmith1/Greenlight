@@ -20,10 +20,16 @@
         <td><%= drawing.revision %></td>
         <td>Date</td>
         <td>Author</td>
+        <td>
+          <%# <%= link_to "Edit", edit_project_drawing_path %>, %>
+          <%# <%= link_to "Delete", project_path(@project), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %> %>
+        </td>
       </tr>
     <% end %>
   </table>
 </div>
+
+<%= link_to "Add a drawing to this project", new_project_drawing_path(@project) %>
 
 <%= link_to "Back", projects_path %>
 

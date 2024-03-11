@@ -1,0 +1,13 @@
+<h1>New Drawing View</h1>
+
+Add a new drawing to the project.
+
+<%= form_with model: @drawing, url: project_drawings_path do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :number %>
+  <%= f.text_field :number %>
+  <%= f.label :revision %>
+  <%= f.text_field :revision %>
+  <%= f.submit %>
+<% end %>
