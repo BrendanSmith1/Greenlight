@@ -24,8 +24,11 @@ class DrawingsController < ApplicationController
 
   def update
     @drawing = Drawing.find(params[:id])
-    @drawing.update(drawing_params)
-    redirect_to project_path(@drawing.project)
+    if @drawing.update(drawing_params)
+      redirect_to project_path(@drawing.project)
+    else
+      render :edit
+    end
   end
 
   def destroy
