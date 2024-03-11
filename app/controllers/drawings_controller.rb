@@ -19,7 +19,6 @@ class DrawingsController < ApplicationController
 
   def edit
     @drawing = Drawing.find(params[:id])
-    @project = Project.find(params[:project_id])
     # authorize @drawing
   end
 

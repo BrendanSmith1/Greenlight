@@ -1,6 +1,4 @@
-<h1>Edit Drawing Page</h1>
-
-<%= form_with model: @drawing, url: project_drawing_path do |f| %>
+<%= form_with model: @drawing, url: project_drawings_path do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
   <%= f.label :number %>
