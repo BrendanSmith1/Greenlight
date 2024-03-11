@@ -24,8 +24,17 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     @project.user = current_user
     authorize @project
-    @project.save
-    redirect_to project_path(@project)
+    if @project.save
+      # This should sort the policy / viewing issue by adding author of project to project users array - feels kind of sloppy
+        # (@project.users << current_user) unless @project.users.include?(current_user)
+      (@project.users.uniq - current_user).each do |user|
+        # If subscried to email notifications, send email
+        ProjectMailer.with(project: @project, user: current_user, author: @project.user).user_added_to_project
+      end
+      redirect_to project_path(@project)
+    else
+      render :new
+    end
   end
 
   def edit
