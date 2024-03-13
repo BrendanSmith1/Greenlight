@@ -14,7 +14,7 @@
     </div>
   </li>
   <% if user_signed_in? %>
-    <li class="right"><a href="#"><%= current_user.email %></a></li>
+    <li class="right"><%= link_to current_user.email, edit_user_registration_path %></li>
   <% else %>
     <li class="right"><a href="#">Not Signed In</a></li>
   <% end %>

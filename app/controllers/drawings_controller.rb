@@ -11,6 +11,10 @@ class DrawingsController < ApplicationController
     @drawing.project = @project
     # authorize @drawing
     if @drawing.save
+      (@project.users.uniq - current_user).each do |user|
+        # If subscried to email notifications, send email
+        ProjectMailer.with(project: @project, user: current_user, author: @project.user, drawing: @drawing).drawing_added_to_project
+      end
       redirect_to project_path(@project)
     else
       render :new
@@ -25,6 +29,10 @@ class DrawingsController < ApplicationController
   def update
     @drawing = Drawing.find(params[:id])
     if @drawing.update(drawing_params)
+      (@project.users.uniq - current_user).each do |user|
+        # If subscried to email notifications, send email
+        ProjectMailer.with(project: @project, user: current_user, author: @project.user, drawing: @drawing).drawing_updated_on_project
+      end
       redirect_to project_path(@drawing.project)
     else
       render :edit

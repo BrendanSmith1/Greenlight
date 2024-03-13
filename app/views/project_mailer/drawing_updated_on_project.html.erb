@@ -1,1 +1,6 @@
 <h1>Drawing Updated on Project View</h1>
+
+<p><%= @author.first_name %> <%= @author.last_name %> has updated <%= @drawing.name %> on <%= link_to @project.name,
+project_url(@project) %></p>
+
+<%= link_to "View the project", project_url(@project), target: :_blank %>

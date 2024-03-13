@@ -23,7 +23,8 @@ class ApplicationController < ActionController::Base
   #This lets you add custom fields to the Devise sign up form
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :job_title, :company])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :job_title, :company])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :job_title, :company,
+        :notify_when_added_to_project, :notify_when_drawing_added_to_project, :notify_when_drawing_updated_on_project])
   end
 
   def skip_pundit?
