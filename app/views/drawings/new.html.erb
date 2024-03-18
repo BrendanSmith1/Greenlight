@@ -3,6 +3,8 @@
 Add a new drawing to the project.
 
 <%= form_with model: @drawing, url: project_drawings_path do |f| %>
+  <%= f.label :file, "Upload a file" %>
+  <%= f.file_field :file %>
   <%= f.label :name %>
   <%= f.text_field :name %>
   <%= f.label :number %>

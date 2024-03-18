@@ -11,10 +11,10 @@ class DrawingsController < ApplicationController
     @drawing.project = @project
     # authorize @drawing
     if @drawing.save
-      (@project.users.uniq - current_user).each do |user|
-        # If subscried to email notifications, send email
-        ProjectMailer.with(project: @project, user: current_user, author: @project.user, drawing: @drawing).drawing_added_to_project
-      end
+      # (@project.users.uniq - current_user).each do |user|
+      #   # If subscried to email notifications, send email
+      #   ProjectMailer.with(project: @project, user: current_user, author: @project.user, drawing: @drawing).drawing_added_to_project
+      # end
       redirect_to project_path(@project)
     else
       render :new
@@ -48,6 +48,6 @@ class DrawingsController < ApplicationController
   private
 
   def drawing_params
-    params.require(:drawing).permit(:name, :number, :revision)
+    params.require(:drawing).permit(:name, :number, :revision, :file)
   end
 end

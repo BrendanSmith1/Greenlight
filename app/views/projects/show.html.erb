@@ -11,6 +11,7 @@
         <th>Revision</th>
         <th>Last Updated</th>
         <th>Updated By</th>
+        <th>Open</th>
     </tr>
     <% @project.drawings.each do |drawing| %>
       <tr>
@@ -20,6 +21,12 @@
         <td><%= drawing.revision %></td>
         <td>Date</td>
         <td>Author</td>
+        <% if drawing.file.attached? %>
+          <td><%= link_to "Open", url_for(drawing.file) %>
+          <%= link_to "Download", rails_blob_path(drawing.file, disposition: "attachment") %></td>
+        <% else %>
+          <td>No file</td>
+        <% end %>
         <td>
           <%= link_to "Edit", edit_project_drawing_path(@project, drawing) %>
           <%= link_to "Delete", project_drawing_path(@project, drawing), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
