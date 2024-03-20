@@ -1,8 +1,0 @@
-<h1><%= @drawing.name %> Drawing Show Page</h1>
-
-<%= @versions.each do |version| %>
-  <p>
-    Name: <%= version.reify.name %>, Revision: <%= version.reify.revision %>,
-    <%= link_to "Open", url_for(version.reify.file) %>
-  </p>
-<% end %>

@@ -1,12 +1,6 @@
 class DrawingsController < ApplicationController
   before_action :set_paper_trail_whodunnit
 
-  def show
-    @project = Project.find(params[:project_id])
-    @drawing = Drawing.find(params[:id])
-    @versions = @drawing.versions
-  end
-
   def new
     @drawing = Drawing.new
     # authorize @drawing

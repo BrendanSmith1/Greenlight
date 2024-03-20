@@ -18,12 +18,14 @@
         <td>Box</td>
         <td><%= drawing.name %></td>
         <td><%= drawing.number %></td>
-        <td><%= drawing.revision %> <%= link_to "Revision History", project_drawing_path(@project, drawing) %></td>
+        <td><%= drawing.revision %></td>
         <td>Date</td>
         <td>Author</td>
         <% if drawing.file.attached? %>
-          <td><%= link_to "Open", url_for(drawing.file) %>
-          <%= link_to "Download", rails_blob_path(drawing.file, disposition: "attachment") %></td>
+          <td>
+            <%= link_to "Open", url_for(drawing.file) %>
+            <%= link_to "Download", rails_blob_path(drawing.file, disposition: "attachment") %>
+          </td>
         <% else %>
           <td>No file</td>
         <% end %>
@@ -32,6 +34,27 @@
           <%= link_to "Delete", project_drawing_path(@project, drawing), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
         </td>
       </tr>
+        <% if drawing.versions.size > 0 %>
+          <% drawing.versions.each do |version| %>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><%= version.reify.revision %></td>
+              <td>Date</td>
+              <td>Author</td>
+              <% if version.reify.file.attached? %>
+                <td>
+                  <%= link_to "Open", url_for(version.reify.file) %>
+                  <%= link_to "Download", rails_blob_path(version.reify.file, disposition: "attachment") %>
+                </td>
+              <% else %>
+                <td>No file</td>
+              <% end %>
+              <td></td>
+            </tr>
+          <% end %>
+        <% end %>
     <% end %>
   </table>
 </div>
