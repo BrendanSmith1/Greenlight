@@ -1,4 +1,4 @@
-<h1>Project Show Page</h1>
+<h1><%= @project.id %> Project Show Page</h1>
 
 <h2><%= @project.name %>, <%= @project.address %>, <%= @project.company %></h2>
 
@@ -18,7 +18,7 @@
         <td>Box</td>
         <td><%= drawing.name %></td>
         <td><%= drawing.number %></td>
-        <td><%= drawing.revision %></td>
+        <td><%= drawing.revision %> <%= link_to "Revision History", project_drawing_path(@project, drawing) %></td>
         <td>Date</td>
         <td>Author</td>
         <% if drawing.file.attached? %>

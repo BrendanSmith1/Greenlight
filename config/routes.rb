@@ -11,6 +11,6 @@ Rails.application.routes.draw do
   # Devise scope for authenticated and unauthenticated users?
   root to: "pages#home"
   resources :projects, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
-    resources :drawings, only: [:new, :create, :edit, :update, :destroy]
+    resources :drawings, only: [:new, :create, :edit, :update, :destroy, :show]
   end
 end

@@ -23,5 +23,8 @@ module Greenlight
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # I've added this to fix paper trail error Tried to load unspecified class: ActiveSupport::TimeWithZone (Psych::DisallowedClass)
+    config.active_record.yaml_column_permitted_classes = [Symbol, Date, Time, ActiveSupport::TimeWithZone, ActiveSupport::TimeZone]
   end
 end

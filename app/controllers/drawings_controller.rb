@@ -1,4 +1,11 @@
 class DrawingsController < ApplicationController
+  before_action :set_paper_trail_whodunnit
+
+  def show
+    @project = Project.find(params[:project_id])
+    @drawing = Drawing.find(params[:id])
+    @versions = @drawing.versions
+  end
 
   def new
     @drawing = Drawing.new
@@ -29,10 +36,10 @@ class DrawingsController < ApplicationController
   def update
     @drawing = Drawing.find(params[:id])
     if @drawing.update(drawing_params)
-      (@project.users.uniq - current_user).each do |user|
-        # If subscried to email notifications, send email
-        ProjectMailer.with(project: @project, user: current_user, author: @project.user, drawing: @drawing).drawing_updated_on_project
-      end
+      # (@project.users.uniq - current_user).each do |user|
+      #   # If subscried to email notifications, send email
+      #   ProjectMailer.with(project: @project, user: current_user, author: @project.user, drawing: @drawing).drawing_updated_on_project
+      # end
       redirect_to project_path(@drawing.project)
     else
       render :edit
