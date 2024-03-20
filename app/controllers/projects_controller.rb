@@ -11,7 +11,6 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @drawings = Drawing.all
     authorize @project
   end
 

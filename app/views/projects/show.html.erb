@@ -13,7 +13,7 @@
         <th>Updated By</th>
         <th>Open</th>
     </tr>
-    <% @project.drawings.each do |drawing| %>
+    <% @project.drawings.sort_by(&:name).each do |drawing| %>
       <tr>
         <td>Box</td>
         <td><%= drawing.name %></td>
@@ -59,7 +59,7 @@
   </table>
 </div>
 
-<%= link_to "Add a drawing to this project", new_project_drawing_path(@project) %>
+<%= link_to "Add a drawing to this project", new_project_drawing_path(@project) %> |
 
 <%= link_to "Back", projects_path %>
 
@@ -77,4 +77,4 @@
   <% end %>
 <% end %>
 
-<%= link_to "Add a user to this project", edit_project_path(@project) %>
+<%= link_to "Add users to this project", edit_project_path(@project) %>
