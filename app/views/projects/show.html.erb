@@ -52,7 +52,7 @@
           </td>
         </tr>
         <% if drawing.versions.size > 1 %>
-          <% drawing.versions.each do |version| %>
+          <% drawing.versions.reverse.each do |version| %>
             <tr data-show-revisions-target="row" class="hidden">
               <td></td>
               <td></td>
