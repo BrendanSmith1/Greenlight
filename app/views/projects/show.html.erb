@@ -67,6 +67,8 @@
               <td>Initial</td>
             <% else %>
               <% if version.reify.file.attached? %>
+                <%# Chat GPT Way of displaying files %>
+                <%# version.object_changes['file'] %>
                 <td>
                   <%= link_to "Open", url_for(version.reify.file) %>
                   <%= link_to "Download", rails_blob_path(version.reify.file, disposition: "attachment") %>
