@@ -1,0 +1,14 @@
+/* body {
+  background-color: #BEC5AD;
+  color: black;
+} */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+* .noDecoration, a:link, a:visited {
+  text-decoration: none;
+}
