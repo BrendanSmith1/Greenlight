@@ -13,3 +13,7 @@ table {
 th, td {
   padding: 8px;
 }
+
+.hidden {
+  display: none;
+}

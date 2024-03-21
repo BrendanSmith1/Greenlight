@@ -1,6 +1,6 @@
 <h1><%= @project.id %> Project Show Page</h1>
 
-<div class="col pt-1" data-controller="disable-button">
+<%# <div class="col pt-1" data-controller="disable-button">
   <button class="btn btn-primary btn-lg"
           data-action="click->disable-button#disable"
           data-disable-button-target="button">
@@ -9,11 +9,11 @@
   <a href="#" class="d-none ms-2"
     data-disable-button-target="link"
     data-action="click->disable-button#reset">Reset</a>
-</div>
+</div> %>
 
 <h2><%= @project.name %>, <%= @project.address %>, <%= @project.company %></h2>
 
-<div class="container" data-controller="show-revisions">
+<div class="container">
   <table>
     <tr>
         <th>Select</th>
@@ -25,52 +25,62 @@
         <th>Open</th>
     </tr>
     <% @project.drawings.sort_by(&:name).each do |drawing| %>
-      <tr>
-        <td>Box</td>
-        <td><%= drawing.name %></td>
-        <td><%= drawing.number %></td>
-        <td>
-          <%= drawing.revision %>
-          <% if drawing.versions.size > 0 %>
-            <button data-action="click->show-revisions#show" data-show-revisions-target="button">Show Updates</button>
-          <% end %>
-        </td>
-        <td>Date</td>
-        <td>Author</td>
-        <% if drawing.file.attached? %>
+      <tbody data-controller="show-revisions">
+        <tr>
+          <td>Box</td>
+          <td><%= drawing.name %></td>
+          <td><%= drawing.number %></td>
           <td>
-            <%= link_to "Open", url_for(drawing.file) %>
-            <%= link_to "Download", rails_blob_path(drawing.file, disposition: "attachment") %>
-          </td>
-        <% else %>
-          <td>No file</td>
-        <% end %>
-        <td>
-          <%= link_to "Edit", edit_project_drawing_path(@project, drawing) %>
-          <%= link_to "Delete", project_drawing_path(@project, drawing), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-        </td>
-      </tr>
-      <% if drawing.versions.size > 0 %>
-        <% drawing.versions.each do |version| %>
-          <tr data-show-revisions-target="row">
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><%= version.reify.revision %></td>
-            <td>Date</td>
-            <td>Author</td>
-            <% if version.reify.file.attached? %>
-              <td>
-                <%= link_to "Open", url_for(version.reify.file) %>
-                <%= link_to "Download", rails_blob_path(version.reify.file, disposition: "attachment") %>
-              </td>
-            <% else %>
-              <td>No file</td>
+            <%= drawing.revision %>
+            <% if drawing.versions.size > 1 %>
+              <button data-action="click->show-revisions#show" data-show-revisions-target="button">Show Updates</button>
             <% end %>
-            <td></td>
-          </tr>
+          </td>
+          <td>Date</td>
+          <td>Author</td>
+          <% if drawing.file.attached? %>
+            <td>
+              <%= link_to "Open", url_for(drawing.file) %>
+              <%= link_to "Download", rails_blob_path(drawing.file, disposition: "attachment") %>
+            </td>
+          <% else %>
+            <td>No file</td>
+          <% end %>
+          <td>
+            <%= link_to "Edit", edit_project_drawing_path(@project, drawing) %>
+            <%= link_to "Delete", project_drawing_path(@project, drawing), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+          </td>
+        </tr>
+        <% if drawing.versions.size > 1 %>
+          <% drawing.versions.each do |version| %>
+            <tr data-show-revisions-target="row" class="hidden">
+              <td></td>
+              <td></td>
+              <td></td>
+              <% if version.event == "create" %>
+                <td>Initial</td>
+              <% else %>
+                <td><%= version.reify.revision %></td>
+              <% end %>
+              <td>Date</td>
+              <td>Author</td>
+              <% if version.event == "create" %>
+                <td>Initial</td>
+              <% else %>
+                <% if version.reify.file.attached? %>
+                  <td>
+                    <%= link_to "Open", url_for(version.reify.file) %>
+                    <%= link_to "Download", rails_blob_path(version.reify.file, disposition: "attachment") %>
+                  </td>
+                <% else %>
+                  <td>No file</td>
+                <% end %>
+              <% end %>
+              <td></td>
+            </tr>
+          <% end %>
         <% end %>
-      <% end %>
+      </tbody>
     <% end %>
   </table>
 </div>

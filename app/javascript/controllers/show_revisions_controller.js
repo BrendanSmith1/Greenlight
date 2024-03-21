@@ -6,8 +6,18 @@ export default class extends Controller {
   connect() {
   }
 
-  show() {
-    this.buttonTarget.innerText = 'Close';
-    this.rowTarget.outerHTML = ""
+  show(event) {
+    // console.log(this.buttonTarget.innerHTML)
+    this.rowTarget.classList.toggle("hidden")
+    if (this.buttonTarget.innerHTML = "Show Updates") {
+      this.buttonTarget.innerHTML = "Hide"
+    } else {
+      this.buttonTarget.innerHTML = "Show Updates"
+    }
+    console.log(event)
+  }
+
+  log(event) {
+    console.log(event)
   }
 }
