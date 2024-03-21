@@ -13,87 +13,85 @@
 
 <h2><%= @project.name %>, <%= @project.address %>, <%= @project.company %></h2>
 
-<div class="container">
-  <table>
-    <tr>
-        <th>Select</th>
-        <th>Name</th>
-        <th>Drawing No</th>
-        <th>Revision</th>
-        <th>Last Updated</th>
-        <th>Updated By</th>
-        <th>Open</th>
-    </tr>
-    <% @project.drawings.sort_by(&:name).each do |drawing| %>
-      <tbody data-controller="show-revisions">
-        <tr>
-          <td>Box</td>
-          <td><%= drawing.name %></td>
-          <td><%= drawing.number %></td>
-          <td>
-            <%= drawing.revision %>
-            <% if drawing.versions.size > 1 %>
-              <button data-action="click->show-revisions#show" data-show-revisions-target="button">Show Updates</button>
-            <% end %>
-          </td>
-          <td>Date</td>
-          <td>Author</td>
-          <% if drawing.file.attached? %>
-            <td>
-              <%= link_to "Open", url_for(drawing.file) %>
-              <%= link_to "Download", rails_blob_path(drawing.file, disposition: "attachment") %>
-            </td>
-          <% else %>
-            <td>No file</td>
+<table>
+  <tr>
+      <th>Select</th>
+      <th>Name</th>
+      <th>Drawing No</th>
+      <th>Revision</th>
+      <th>Last Updated</th>
+      <th>Updated By</th>
+      <th>Open</th>
+  </tr>
+  <% @project.drawings.sort_by(&:name).each do |drawing| %>
+    <tbody data-controller="show-revisions">
+      <tr>
+        <td>Box</td>
+        <td><%= drawing.name %></td>
+        <td><%= drawing.number %></td>
+        <td>
+          <%= drawing.revision %>
+          <% if drawing.versions.size > 1 %>
+            <button data-action="click->show-revisions#show" data-show-revisions-target="button">Show Updates</button>
           <% end %>
+        </td>
+        <td>Date</td>
+        <td>Author</td>
+        <% if drawing.file.attached? %>
           <td>
-            <%= link_to "Edit", edit_project_drawing_path(@project, drawing) %>
-            <%= link_to "Delete", project_drawing_path(@project, drawing), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+            <%= link_to "Open", url_for(drawing.file) %>
+            <%= link_to "Download", rails_blob_path(drawing.file, disposition: "attachment") %>
           </td>
-        </tr>
-        <% if drawing.versions.size > 1 %>
-          <% drawing.versions.reverse.each do |version| %>
-            <tr data-show-revisions-target="row" class="hidden">
-              <td></td>
-              <td></td>
-              <td></td>
-              <% if version.event == "create" %>
-                <td>Initial</td>
-              <% else %>
-                <td><%= version.reify.revision %></td>
-              <% end %>
-              <td>Date</td>
-              <td>Author</td>
-              <% if version.event == "create" %>
-                <td>Initial</td>
-              <% else %>
-                <% if version.reify.file.attached? %>
-                  <td>
-                    <%= link_to "Open", url_for(version.reify.file) %>
-                    <%= link_to "Download", rails_blob_path(version.reify.file, disposition: "attachment") %>
-                  </td>
-                <% else %>
-                  <td>No file</td>
-                <% end %>
-              <% end %>
-              <td></td>
-            </tr>
-          <% end %>
+        <% else %>
+          <td>No file</td>
         <% end %>
-      </tbody>
-    <% end %>
-  </table>
-</div>
+        <td>
+          <%= link_to "Edit", edit_project_drawing_path(@project, drawing) %>
+          <%= link_to "Delete", project_drawing_path(@project, drawing), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+        </td>
+      </tr>
+      <% if drawing.versions.size > 1 %>
+        <% drawing.versions.reverse.each do |version| %>
+          <tr data-show-revisions-target="row" class="hidden">
+            <td></td>
+            <td></td>
+            <td></td>
+            <% if version.event == "create" %>
+              <td>Initial</td>
+            <% else %>
+              <td><%= version.reify.revision %></td>
+            <% end %>
+            <td>Date</td>
+            <td>Author</td>
+            <% if version.event == "create" %>
+              <td>Initial</td>
+            <% else %>
+              <% if version.reify.file.attached? %>
+                <td>
+                  <%= link_to "Open", url_for(version.reify.file) %>
+                  <%= link_to "Download", rails_blob_path(version.reify.file, disposition: "attachment") %>
+                </td>
+              <% else %>
+                <td>No file</td>
+              <% end %>
+            <% end %>
+            <td></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  <% end %>
+</table>
 
-<%= link_to "Add a drawing to this project", new_project_drawing_path(@project) %> |
+<%= link_to "Add a drawing to this project", new_project_drawing_path(@project), class: "button-main" %> |
 
-<%= link_to "Back", projects_path %>
+<%= link_to "Back", projects_path, class: "button-back" %>
 
 <% if policy(@project).edit? %>
-   | <%= link_to "Edit", edit_project_path(@project) %> |
+   | <%= link_to "Edit", edit_project_path(@project), class: "button-edit" %> |
 <% end %>
 <% if policy(@project).destroy? %>
-  <%= link_to "Delete", project_path(@project), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+  <%= link_to "Delete", project_path(@project), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "button-delete" %>
 <% end %>
 
 <% if @project.users.any? %>
@@ -103,4 +101,6 @@
   <% end %>
 <% end %>
 
-<%= link_to "Add users to this project", edit_project_path(@project) %>
+<br>
+
+<%= link_to "Add users to this project", edit_project_path(@project), class: "button-main" %>

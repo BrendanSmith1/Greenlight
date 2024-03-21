@@ -17,4 +17,4 @@
 
 <div class="clearfix"></div>
 
-<%= link_to "New Project", new_project_path if policy(Project).new?%>
+<%= link_to "New Project", (new_project_path if policy(Project).new?), class: "button-main"%>

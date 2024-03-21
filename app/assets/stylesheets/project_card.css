@@ -1,5 +1,6 @@
 div.gallery {
   border: 1px solid #ccc;
+  border-radius: 4px;
   margin-bottom: 16px;
   text-align: center;
   background-color: #BEC5AD;
@@ -7,6 +8,7 @@ div.gallery {
 
 div.gallery:hover {
   border: 1px solid #777;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
 
 div.gallery img {
