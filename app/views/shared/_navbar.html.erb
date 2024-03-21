@@ -1,21 +1,26 @@
-<ul class="navbar">
-  <%# Will want to add active dyanmically to the page that is active (Stimulus) %>
-  <li class="left"><%= link_to "Projects", projects_path, class: "active" %></li>
-  <li class="right dropdown">
-    <a href="javascript:void(0)" class="dropbtn">Dropdown</a>
-    <div class="dropdown-content">
-      <% if user_signed_in? %>
-        <%= link_to "Edit your details", edit_user_registration_path %>
-        <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete } %>
-      <% else %>
-        <%= link_to "Login", new_user_session_path %>
-        <%= link_to "Sign up", new_user_registration_path %>
-      <% end %>
-    </div>
-  </li>
-  <% if user_signed_in? %>
-    <li class="right"><%= link_to current_user.email, edit_user_registration_path %></li>
-  <% else %>
-    <li class="right"><a href="#">Not Signed In</a></li>
-  <% end %>
-</ul>
+<nav>
+  <div class="logo">
+    <p>Greenlight</p>
+  </div>
+  <ul>
+    <%# Will want to add active dyanmically to the page that is active (Stimulus) %>
+    <li><%= link_to "Projects", projects_path, class: "active" %></li>
+    <% if user_signed_in? %>
+      <li><%= link_to current_user.email, edit_user_registration_path %></li>
+    <% else %>
+      <li><a href="#">Not Signed In</a></li>
+    <% end %>
+    <li class=" dropdown">
+      <a href="javascript:void(0)" class="dropbtn">Dropdown</a>
+      <div class="dropdown-content">
+        <% if user_signed_in? %>
+          <%= link_to "Edit your details", edit_user_registration_path %>
+          <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete } %>
+        <% else %>
+          <%= link_to "Login", new_user_session_path %>
+          <%= link_to "Sign up", new_user_registration_path %>
+        <% end %>
+      </div>
+    </li>
+  </ul>
+</nav>

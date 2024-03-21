@@ -1,51 +1,71 @@
-ul {
-  list-style-type: none;
+* {
   margin: 0;
   padding: 0;
-  overflow: hidden;
-  background-color: #333;
+  box-sizing: border-box;
   /* position: fixed; */
   /* top: 0; */
   /* width: 100%; */
 }
 
-li.left {
-  float: left;
-  border-right: 1px solid #bbb;
+nav {
+  width: 100%;
+  height: 80px;
+  line-height: 80px;
+  padding: 0 100px;
+  overflow: hidden;
+  background-color: #01200F;
 }
 
-li.right {
-  float: right;
-  border-left: 1px solid #bbb;
-}
-
-li a {
-  display: block;
+nav .logo p {
+  font-size: 24px;
+  font-weight: bold;
   color: white;
-  text-align: center;
-  padding: 14px 16px;
+  text-transform: uppercase;
+  float: left;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  text-align: left
+}
+
+nav ul {
+  float: right;
+  margin-right: -40px;
+}
+
+nav li {
+  display: inline-block;
+  border-left: 1px solid #bbb;
+  list-style: none;
+}
+
+nav li a {
+  color: white;
+  font-size: 16px;
+  /* text-align: center; */
+  padding: 0px 30px;
   text-decoration: none;
 }
 
 /* Change the link color to #111 (black) on hover */
-li a:hover {
-  background-color: #111;
+nav li a:hover {
+  background-color: #248232;
+  transition: all 0.3s ease;
 }
 
-.active {
-  background-color: #04AA6D;
+nav active {
+  background-color: #248232;
 }
 
 /* Drop down styling */
-li a, .dropbtn {
+nav li a, .dropbtn {
   display: inline-block;
 }
 
-li.dropdown {
+nav li.dropdown {
   display: inline-block;
 }
 
-.dropdown-content {
+nav .dropdown-content {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
@@ -56,7 +76,7 @@ li.dropdown {
   margin-right: 8px;
 }
 
-.dropdown-content a {
+nav .dropdown-content a {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
@@ -64,9 +84,9 @@ li.dropdown {
   text-align: left;
 }
 
-.dropdown-content a:hover {background-color: #f1f1f1;}
+nav .dropdown-content a:hover {background-color: #f1f1f1;}
 
-.dropdown:hover .dropdown-content {
+nav .dropdown:hover .dropdown-content {
   display: block;
 }
 /* End of dropdown styling */
