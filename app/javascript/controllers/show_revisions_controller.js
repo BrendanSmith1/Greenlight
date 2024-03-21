@@ -8,7 +8,9 @@ export default class extends Controller {
 
   show(event) {
     // console.log(this.buttonTarget.innerHTML)
-    this.rowTarget.classList.toggle("hidden")
+    this.rowTargets.forEach(row => {
+      row.classList.toggle("hidden");
+    });
     if (this.buttonTarget.innerHTML = "Show Updates") {
       this.buttonTarget.innerHTML = "Hide"
     } else {
