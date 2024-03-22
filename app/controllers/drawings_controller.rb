@@ -10,6 +10,7 @@ class DrawingsController < ApplicationController
     @project = Project.find(params[:project_id])
     @drawing = Drawing.new(drawing_params)
     @drawing.project = @project
+    @drawing.file.attach(params[:file])
     # authorize @drawing
     if @drawing.save
       # (@project.users.uniq - current_user).each do |user|
@@ -29,6 +30,7 @@ class DrawingsController < ApplicationController
 
   def update
     @drawing = Drawing.find(params[:id])
+    @drawing.file.attach(params[:file])
     if @drawing.update(drawing_params)
       # (@project.users.uniq - current_user).each do |user|
       #   # If subscried to email notifications, send email
