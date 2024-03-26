@@ -1,41 +1,44 @@
-<table>
-  <tr>
-      <th>Select</th>
-      <th>Name</th>
-      <th>Drawing No</th>
-      <th>Revision</th>
-      <th>Last Updated</th>
-      <th>Updated By</th>
-      <th>Open</th>
-  </tr>
-  <% @drawing.versions.reverse.each do |version| %>
+<div class="tableFixHead">
+  <table>
     <tr>
-      <td>Select</td>
-      <td><%= version.reify.name %></td>
-      <td><%= version.reify.number %></td>
-      <% if version.event == "create" %>
-        <td>Initial</td>
-      <% else %>
-        <td><%= version.reify.revision %></td>
-      <% end %>
-      <td>Date</td>
-      <td>Author</td>
-      <% if version.event == "create" %>
-        <td>Initial</td>
-      <% else %>
-        <% if version.reify.file.attached? %>
-          <%# Chat GPT Way of displaying files %>
-          <%# version.object_changes['file'] %>
-          <td>
-            <%= link_to "Open", url_for(version.reify.file), target: :_blank %>
-            <%= link_to "Download", rails_blob_path(version.reify.file, disposition: "attachment") %>
-          </td>
-        <% else %>
-          <td>No file</td>
-        <% end %>
-      <% end %>
+        <th>Select</th>
+        <th>Name</th>
+        <th>Drawing No</th>
+        <th>Revision</th>
+        <th>Last Updated</th>
+        <th>Updated By</th>
+        <th>Open</th>
     </tr>
-  <% end %>
-</table>
+    <% @drawing.versions.reverse.each do |version| %>
+      <tr>
+        <td>Select</td>
+        <td><%= version.reify.name %></td>
+        <td><%= version.reify.number %></td>
+        <% if version.event == "create" %>
+          <td>Initial</td>
+        <% else %>
+          <td><%= version.reify.revision %></td>
+        <% end %>
+        <td>Date</td>
+        <td>Author</td>
+        <% if version.event == "create" %>
+          <td>Initial</td>
+        <% else %>
+          <% if version.reify.file.attached? %>
+            <%# Chat GPT Way of displaying files %>
+            <%# version.object_changes['file'] %>
+            <td>
+              <%= link_to "Open", url_for(version.reify.file), target: :_blank %>
+              <%= link_to "Download", rails_blob_path(version.reify.file, disposition: "attachment") %>
+            </td>
+          <% else %>
+            <td>No file</td>
+          <% end %>
+        <% end %>
+        <td></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
 
 <%= link_to "Back", project_path(@project), class: "button-back" %>
