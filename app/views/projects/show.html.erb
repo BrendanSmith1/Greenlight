@@ -51,7 +51,7 @@
         </td>
       </tr>
       <% if drawing.versions.size > 1 %>
-        <% drawing.versions.reverse.each do |version| %>
+        <% drawing.versions.reverse[0..4].each do |version| %>
           <tr data-show-revisions-target="row" class="hidden">
             <td></td>
             <td></td>
@@ -77,6 +77,18 @@
                 <td>No file</td>
               <% end %>
             <% end %>
+            <td></td>
+          </tr>
+        <% end %>
+        <% if drawing.versions.size > 5 %>
+          <tr data-show-revisions-target="row" class="hidden">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><%= link_to "Show All", project_drawing_path(@project, drawing) %></td>
+            <td></td>
+            <td></td>
+            <td></td>
             <td></td>
           </tr>
         <% end %>
