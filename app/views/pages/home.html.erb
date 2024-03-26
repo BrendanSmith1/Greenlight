@@ -1,3 +1,25 @@
-<h1>Home Page</h1>
+<% if user_signed_in? %>
+  <div class="home_page row">
+    <%= link_to "All your Projects", projects_path, class: "button-main"%>
+  </div>
+<% else %>
+  <div class="home_page row">
+    <div class="column">
+      <h2>Store and share drawings without the headache</h2>
 
-<%= link_to "All Your Projects", projects_path %>
+      <p>
+        Tired of sending updates via email and constantly chasing for updates, sign up to Greenlight. A website
+        designed to make the process of sharing and storing drawings easier.
+      </p>
+
+      <%= link_to "Sign Up", new_user_registration_path, class: "button-main" %>
+
+      Already a user?
+      <%= link_to "Log In", new_user_session_path, class: "button-back" %>
+    </div>
+    <div class="column">
+      <h2><%= image_tag "home.jpg" %></h2>
+
+    </div>
+  </div>
+<% end %>
