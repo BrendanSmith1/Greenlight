@@ -13,8 +13,8 @@
 
 <h2><%= @project.name %>, <%= @project.address %>, <%= @project.company %></h2>
 
-<div class="tableFixHead">
-  <table>
+<div class="scrollable-table">
+  <table class="table">
     <thead>
       <tr>
           <th>Select</th>
@@ -24,6 +24,7 @@
           <th>Last Updated</th>
           <th>Updated By</th>
           <th>Open</th>
+          <th></th>
       </tr>
     </thead>
     <% @project.drawings.sort_by(&:name).each do |drawing| %>

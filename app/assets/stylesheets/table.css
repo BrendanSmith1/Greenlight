@@ -1,20 +1,36 @@
-.fixTableHead {
-  /* overflow: auto; */
-  height: 100px;
+.scrollable-table {
+  overflow-y: auto;
+  height: 500px;
+  margin: 0;
+  /* Use this along with tr to snap it back so whole row is shown */
+  /* scroll-snap-type: y mandatory; */
 }
-.fixTableHead thead th {
+
+.table {
+  font-family: 'Inter', sans-serif;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.table th {
   position: sticky;
   top: 0;
-  z-index: 1;
+  background-color: #248232;
+  color: #ffffff;
+  text-align: left;
 }
-table {
-  border-collapse: collapse;
-  width: 100%;
+
+.table th,
+.table td {
+  padding: 6px, 6px;
+  font-weight: normal;
 }
-th, td {
-  padding: 8px 15px;
-  border: 2px solid #529432;
-}
-th {
-  background: #ABDD93;
+
+/* Doesn't work because each tbody is self-contatined because of js controller */
+/* .table tr:nth-of-type(even) {
+  background-color: black;
+} */
+
+.table tr {
+  /* scroll-snap-align: start; */
 }
